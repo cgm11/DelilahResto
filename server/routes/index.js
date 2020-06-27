@@ -1,8 +1,8 @@
 ///////////////// Imports /////////////////
 const express = require('express');
-const productRouter = require('../routes/productsRouter');
-const signInRouter = require('../routes/signinRouter');
-const loginRouter = require('../routes/loginRouter');
+const productRouter = require('./productsRouter');
+const signInRouter = require('./signinRouter');
+const loginRouter = require('./loginRouter');
 
 ///////////////// Set configurations /////////////////
 const app = express();
