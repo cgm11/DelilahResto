@@ -1,0 +1,8 @@
+module.exports = {
+    CODE_OK: 200,
+    CODE_CREATED: 201,    
+    CODE_NO_CONTENT: 204,
+    CODE_BAD_REQUEST: 400,
+    CODE_FORBIDDEN: 403,
+    CODE_INTERNAL_ERROR: 500
+}
