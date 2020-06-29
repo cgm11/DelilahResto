@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const orders = db.define('status', {
+const orders = db.define('orders', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -15,24 +15,6 @@ const orders = db.define('status', {
     },
     total: {
         type: Sequelize.INTEGER,
-        require: true,
-        allowNull: false,
-        validate: { notEmpty: true }
-    },
-    user: {
-        type: Sequelize.STRING,
-        require: true,
-        allowNull: false,
-        validate: { notEmpty: true }
-    },
-    address: {
-        type: Sequelize.STRING,
-        require: true,
-        allowNull: false,
-        validate: { notEmpty: true }
-    },
-    status: {
-        type: Sequelize.STRING,
         require: true,
         allowNull: false,
         validate: { notEmpty: true }

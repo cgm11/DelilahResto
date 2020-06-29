@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const paymentMethods = db.define('status', {
+const statusOrder = db.define('statusOrder', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -15,4 +15,4 @@ const paymentMethods = db.define('status', {
     }
 })
 
-module.exports = paymentMethods;
+module.exports = statusOrder;

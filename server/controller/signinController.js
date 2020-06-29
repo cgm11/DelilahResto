@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const ResponseUtil = require('../utils/responses');
-const UsersDao = require('../dao/usersDao');
+const UsersDao = require('../db/dao/usersDao');
 const messages = require('../constants/messages');
 
 async function getUsers(req, res) {

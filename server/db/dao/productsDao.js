@@ -1,5 +1,5 @@
-const messages = require('../constants/messages');
-const products = require('../models/products');
+const messages = require('../../constants/messages');
+const products = require('../models/products.model');
 
 class ProductsDao {
     

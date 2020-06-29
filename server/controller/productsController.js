@@ -1,5 +1,5 @@
 const ResponseUtil = require('../utils/responses');
-const ProductsDao = require('../dao/productsDao');
+const ProductsDao = require('../db/dao/productsDao');
 const messages = require('../constants/messages');
 
 async function getProducts(req, res) {

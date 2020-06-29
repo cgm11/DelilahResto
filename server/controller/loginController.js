@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const moment = require('moment');
 const constants = require('../constants/constants');
 const ResponseUtil = require('../utils/responses');
-const UsersDao = require('../dao/usersDao');
+const UsersDao = require('../db/dao/usersDao');
 const messages = require('../constants/messages');
 
 async function login(req, res) {

@@ -1,6 +1,6 @@
 const sequelize = require('sequelize');
-const messages = require('../constants/messages');
-const users = require('../models/users');
+const messages = require('../../constants/messages');
+const users = require('../models/users.model');
 
 class UsersDao {
 
