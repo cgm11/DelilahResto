@@ -1,0 +1,20 @@
+{
+    "development": {
+        "PORT": 3000,
+        "USER_DB": "root",
+        "PASS_BD": "",
+        "HOST_BD": "localhost",
+        "PORT_BD": "3306",
+        "NAME_BD": "delilahresto",
+        "DIALECT_DB": "mysql"
+    },
+    "production": {
+        "PORT": 3000,
+        "USER_BD": "root",
+        "PASS_BD": "",
+        "HOST_BD": "localhost",
+        "PORT_BD": "3306",
+        "NAME_BD": "delilahresto",
+        "DIALECT_DB": "mysql"
+    }
+}

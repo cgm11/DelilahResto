@@ -19,7 +19,7 @@ class Responses {
             });
     }
     
-    static noContent(res,) {
+    static noContent(res) {
         res.status(httpCodes.CODE_NO_CONTENT)
             .json({
                 status: responseMsg.MESSAGE_NO_CONTENT
