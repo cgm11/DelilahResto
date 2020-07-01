@@ -24,6 +24,7 @@ async function login(req, res) {
 const tokenGenerator = (user) => {
     const payload = {
         user: user.username,
+        userType: user.userTypeId,
         createdAt: moment().unix(),
         expiredAt: moment().add(5, 'minutes').unix()
     }

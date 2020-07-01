@@ -20,7 +20,9 @@ class UsersDao {
                 where: { id: id }
             })
         }
-        catch (e) { return messages.ERROR }
+        catch (e) { 
+            console.log(e);
+            return messages.ERROR }
     }
 
     static async deleteUser(id) {

@@ -24,11 +24,14 @@ async function setUser(req, res) {
 
 async function updateUser(req, res) {
     try {
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
         const user = await UsersDao.updateUser(req.body, req.params.id);
         if (user == messages.ERROR) ResponseUtil.internalError(res, messages.MESSAGE_ERROR);
         ResponseUtil.noContent(res);
     }
-    catch (e) { return messages.ERROR }
+    catch (e) {
+        console.log("se fue por el error de update");
+        return messages.ERROR }
 }
 
 async function deleteUser(req, res) {

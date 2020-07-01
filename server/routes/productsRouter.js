@@ -1,14 +1,15 @@
 const express = require('express');
-const middlewares = require('../middlewares/userValidation');
+const userMiddlewares = require('../middlewares/userValidation');
+const productMiddlewares = require('../middlewares/productsValidation');
 const controller = require('../controller/productsController');
 
 const router = express.Router();
 
-router.use(middlewares.verifyToken);
+router.use(userMiddlewares.validateToken);
 
 router.get('/', controller.getProducts);
-router.post('/', controller.setProduct);
-router.put('/:id', controller.updateProduct);
-router.delete('/:id', controller.deleteProduct);
+router.post('/', userMiddlewares.AdminPermissions, productMiddlewares.validateCreateAndUpdateReq, controller.setProduct);
+router.put('/:id', userMiddlewares.AdminPermissions, productMiddlewares.validateCreateAndUpdateReq, controller.updateProduct);
+router.delete('/:id', userMiddlewares.AdminPermissions, productMiddlewares.validateDeleteReq, controller.deleteProduct);
 
 module.exports = router;

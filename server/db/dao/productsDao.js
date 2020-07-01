@@ -6,16 +6,12 @@ class ProductsDao {
     static async getProducts() {
         console.log("entro a la bd");
         try { return await products.findAll() }
-        catch (e) { 
-            console.log("error: " + e);
-            return messages.ERROR }
+        catch (e) { return messages.ERROR }
     }
 
     static async setProduct(body) {
         try { return await products.create(body) }
-        catch (e) {
-            console.log("error: " + e);
-            return messages.ERROR }
+        catch (e) {return messages.ERROR }
     }
 
     static async updateProduct(body, id) {
