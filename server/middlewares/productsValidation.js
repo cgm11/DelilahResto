@@ -6,19 +6,17 @@ const validateCreateAndUpdateReq = (req, res, next) => {
     try {
         const schema = joi.object({
             name: joi.string().min(3).required(),
-            price: joi.number.required(),
+            price: joi.number().required(),
             image: joi.optional(),
-            dataToken: joi.required()
+            userId: joi.optional(),
+            userType: joi.optional()
         });
-
         const correctReq = schema.validate(req.body);
 
         if (correctReq.error)
             return ResponseUtil.badRequest(res, correctReq.error.message);
         next();
-    } catch (error) {
-        ResponseUtil.internalError(res, messages.MESSAGE_ERROR);
-    }
+    } catch (error) { ResponseUtil.internalError(res, messages.MESSAGE_ERROR); }
 }
 
 const validateDeleteReq = (req, res, next) => {

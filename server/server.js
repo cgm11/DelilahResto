@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(routes);
 
 ///////////////// Start server /////////////////
-
 // Syncronize database for creating the models if not exits
 db
     .sync({ force: false })

@@ -5,13 +5,20 @@ const {
     USER_DB,
     PASS_BD,
     HOST_BD,
-    DIALECT_DB
+    DIALECT_DB,
+    TIME_ZONE
 } = require('../config/config');
 
 const bd = new sequelize(NAME_BD, USER_DB, PASS_BD, {
     host: HOST_BD,
     dialect: DIALECT_DB,
-    loggin: false
+    loggin: false,
+    dialectOptions: {
+      useUTC: false,
+      dateStrings: true,
+      typeCast: true
+    },
+    timezone: TIME_ZONE
 });
 
 module.exports = bd;
@@ -22,6 +29,8 @@ const PaymentMethods = require('./models/paymentMethods.model');
 const Orders = require('./models/orders.model');
 const Products = require('./models/products.model');
 const StatusOrder = require('./models/statusOrder.model');
+const ProductsOrders = require('./models/statusOrder.model');
+const productsOrder = require('./models/productsOrder.model');
 
 //Foreign Keys
 UserTypes.hasOne(Users);
@@ -55,7 +64,38 @@ StatusOrder.hasOne(Orders);
 Orders.belongsTo(StatusOrder, {
   foreignKey: {
     type: sequelize.INTEGER,
-    defaultValue: 2,
+    defaultValue: 1,
     allowNull: false
   }
 });
+
+Products.belongsToMany(Orders, {
+  through: productsOrder,
+  as: 'orders',
+  foreignKey:{
+    type: sequelize.INTEGER,
+    name: "productId",
+    allowNull: false
+  },
+  otherKey: {
+    type: sequelize.INTEGER,
+    name: "orderId",
+    allowNull: false
+  }
+});
+
+Orders.belongsToMany(Products, {
+  through: productsOrder,
+  as: 'products',
+  foreignKey:{
+    type: sequelize.INTEGER,
+    name: "orderId",
+    allowNull: false
+  },
+  otherKey: {
+    type: sequelize.INTEGER,
+    name: "productId",
+    allowNull: false
+  }
+});
+

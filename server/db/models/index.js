@@ -5,6 +5,7 @@ const PaymentMethods = require('./paymentMethods.model');
 const Orders = require('./orders.model');
 const Products = require('./products.model');
 const StatusOrder = require('./statusOrder.model');
+const ProductsOrders = require('./statusOrder.model');
 
 module.exports = {
     Users,
@@ -12,5 +13,6 @@ module.exports = {
     PaymentMethods,
     Orders,
     Products,
-    StatusOrder
+    StatusOrder,
+    ProductsOrders
 }

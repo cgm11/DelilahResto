@@ -25,8 +25,9 @@ const tokenGenerator = (user) => {
     const payload = {
         user: user.username,
         userType: user.userTypeId,
+        userId: user.id,
         createdAt: moment().unix(),
-        expiredAt: moment().add(5, 'minutes').unix()
+        expiredAt: moment().add(10, 'minutes').unix()
     }
     return jwt.sign(payload, constants.FIRMA);
 }

@@ -6,5 +6,6 @@ module.exports = {
     ERROR_AUTHORIZATION: `Session expired or user don't have permissions to access`,
     ERROR: 'error',
     EMPTY_TOKEN: 'token has to be included',
-    DENIED: 'User is not allowed to do that'
+    DENIED: 'User is not allowed to do that',
+    INVALID_PRODUCT_ID: `Please valite order, because one or more products doesn't exist`
 }

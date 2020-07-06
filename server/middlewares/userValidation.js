@@ -12,7 +12,8 @@ const validateToken = async (req, res, next) => {
         await jwt.verify(token, constants.FIRMA, (error, data) => {
             if (error) ResponseUtil.badRequest(res, messages.ERROR_AUTHORIZATION)
             if (data.expiredAt < moment().unix()) ResponseUtil.badRequest(res, messages.ERROR_AUTHORIZATION)
-            req.body.dataToken = data;
+            req.body.userId = data.userId;
+            req.body.userType = data.userType;
             return next();
         });
     } catch (e) { ResponseUtil.badRequest(res, messages.EMPTY_TOKEN); }
@@ -48,11 +49,8 @@ const validateUpdateReq = (req, res, next) => {
             phoneNumber: joi.string().min(3).required(),
             address: joi.string().min(3).required(),
             password: joi.string().min(3).required(),
-            userTypeId: joi.number().required(),
-            dataToken: joi.required()
+            userType: joi.number().required()
         });
-
-        console.log(req.body);
 
         const correctReq = schema.validate(req.body);
 
@@ -76,10 +74,9 @@ const validateDeleteReq = (req, res, next) => {
 };
 
 const AdminPermissions = (req, res, next) => {
-    const userType = req.body.dataToken.userType;
-    console.log(userType);
-    if (userType != 1) ResponseUtil.forbidden(res, messages.DENIED);    
-    next();
+    const userType = req.body.userType;
+    if (userType !== constants.IS_ADMIN) ResponseUtil.forbidden(res, messages.DENIED);      
+    next();    
 }
 
 module.exports = {

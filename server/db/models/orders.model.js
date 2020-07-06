@@ -6,18 +6,6 @@ const orders = db.define('orders', {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
-    },
-    description: {
-        type: Sequelize.STRING,
-        require: true,
-        allowNull: false,
-        validate: { notEmpty: true }
-    },
-    total: {
-        type: Sequelize.INTEGER,
-        require: true,
-        allowNull: false,
-        validate: { notEmpty: true }
     }
 })
 
