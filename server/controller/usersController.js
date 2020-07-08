@@ -27,17 +27,19 @@ async function updateUser(req, res) {
         req.body.password = bcrypt.hashSync(req.body.password, 10);
         const user = await UsersDao.updateUser(req.body, req.params.id);
         if (user == messages.ERROR) ResponseUtil.internalError(res, messages.MESSAGE_ERROR);
+        if (user == 0) ResponseUtil.badRequest(res, messages.INVALID_ID);
         ResponseUtil.noContent(res);
     }
     catch (e) {
-        console.log("se fue por el error de update");
         return messages.ERROR }
 }
 
 async function deleteUser(req, res) {
     try {
         const user = await UsersDao.deleteUser(req.params.id);
+        console.log(user);
         if (user == messages.ERROR) ResponseUtil.internalError(res, messages.MESSAGE_ERROR);
+        if (user == 0) ResponseUtil.badRequest(res, messages.INVALID_ID);
         ResponseUtil.noContent(res);
     }
     catch (e) { return messages.ERROR }

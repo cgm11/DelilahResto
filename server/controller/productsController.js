@@ -24,6 +24,7 @@ async function updateProduct(req, res) {
     try {
         const product = await ProductsDao.updateProduct(req.body, req.params.id);
         if (product == messages.ERROR) ResponseUtil.internalError(res, messages.MESSAGE_ERROR);
+        if (product == 0) ResponseUtil.badRequest(res, messages.INVALID_ID);
         ResponseUtil.noContent(res);
     }
     catch (e) { return messages.ERROR }
@@ -33,6 +34,7 @@ async function deleteProduct(req, res) {
     try {
         const product = await ProductsDao.deleteProduct(req.params.id);
         if (product == messages.ERROR) ResponseUtil.internalError(res, messages.MESSAGE_ERROR);
+        if (product == 0) ResponseUtil.badRequest(res, messages.INVALID_ID);
         ResponseUtil.noContent(res);
     }
     catch (e) { return messages.ERROR }

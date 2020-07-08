@@ -9,7 +9,7 @@ async function getOrders(req, res) {
     try {
         var orders;
         const userType = req.body.userType;
-        if (userType == constants.IS_ADMIN) {
+        if (userType == constants.IS_ADMIN) {            
             orders = await OrdersDao.getOrders();
         } else {
             const userId = req.body.userId;
@@ -49,6 +49,7 @@ async function updateOrder(req, res) {
         const order = await OrdersDao.updateOrder(req.body, req.params.id);
         console.log(order);
         if (order == messages.ERROR) ResponseUtil.internalError(res, messages.MESSAGE_ERROR);
+        if (order == 0) ResponseUtil.badRequest(res, messages.INVALID_ID);
         ResponseUtil.noContent(res);
     }
     catch (e) { 
@@ -56,8 +57,20 @@ async function updateOrder(req, res) {
         return messages.ERROR }
 }
 
+async function deleteOrder(req, res) {
+    try {
+        const order = await OrdersDao.deleteOrder(req.params.id);
+        if (order == messages.ERROR) ResponseUtil.internalError(res, messages.MESSAGE_ERROR);
+        console.log(order);
+        if (order == 0) ResponseUtil.badRequest(res, messages.INVALID_ID);
+        ResponseUtil.noContent(res);
+    }
+    catch (e) { return messages.ERROR }
+}
+
 module.exports = {
     getOrders,
     setOrder,
-    updateOrder
+    updateOrder,
+    deleteOrder
 };

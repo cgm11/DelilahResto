@@ -1,0 +1,456 @@
+openapi: 3.0.0
+
+info:
+  title: "Delilah Restó"
+  version: 1.0.0
+  
+paths:
+  /users:
+    get:
+      summary: "Return all users of the app"
+      parameters:
+        - in: header
+          name: "token"
+          schema:
+            type: string
+            example: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2FnaiIsInVzZXJUeXBlIjoyLCJ1c2VySWQiOjIsImNyZWF0ZWRBdCI6MTU5Mzk4NzMxOCwiZXhwaXJlZEF0IjoxNTkzOTg3OTE4LCJpYXQiOjE1OTM5ODczMTh9.iney1QmwDdhN8Eh6GaiZKIj1pZKXTxGp29Ic8f6-Wl0" 
+          required: true
+      responses:
+        200:
+          description: "success"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/users'
+        500:
+          description: "An error occurred, please try again."
+    post:
+      summary: "create an user"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/users'
+      responses:
+        201:
+         description: "Created"
+         content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/users'
+        500:
+          description: "An error occurred, please try again."
+  /users/{id}:
+    put:
+      summary: "Update an user"
+      parameters:
+        - in: header
+          name: "token"
+          schema:
+            type: string
+            example: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2FnaiIsInVzZXJUeXBlIjoyLCJ1c2VySWQiOjIsImNyZWF0ZWRBdCI6MTU5Mzk4NzMxOCwiZXhwaXJlZEF0IjoxNTkzOTg3OTE4LCJpYXQiOjE1OTM5ODczMTh9.iney1QmwDdhN8Eh6GaiZKIj1pZKXTxGp29Ic8f6-Wl0" 
+          required: true
+        - in: path
+          name: id   # Note the name is the same as in the path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The user ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/usersUpdate'
+      responses:
+        204:
+          description: "no content"
+        500:
+          description: "An error occurred, please try again."
+    delete:
+      summary: "Delete an user"
+      parameters:
+        - in: header
+          name: "token"
+          schema:
+            type: string
+            example: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2FnaiIsInVzZXJUeXBlIjoyLCJ1c2VySWQiOjIsImNyZWF0ZWRBdCI6MTU5Mzk4NzMxOCwiZXhwaXJlZEF0IjoxNTkzOTg3OTE4LCJpYXQiOjE1OTM5ODczMTh9.iney1QmwDdhN8Eh6GaiZKIj1pZKXTxGp29Ic8f6-Wl0" 
+          required: true
+        - in: path
+          name: id   # Note the name is the same as in the path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The user ID
+      responses:
+        204:
+          description: "no content"
+        500:
+          description: "An error occurred, please try again."
+  /products:
+    get:
+      summary: "Return all options of dishes"
+      parameters:
+        - in: header
+          name: "token"
+          schema:
+            type: string
+            example: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2FnaiIsInVzZXJUeXBlIjoyLCJ1c2VySWQiOjIsImNyZWF0ZWRBdCI6MTU5Mzk4NzMxOCwiZXhwaXJlZEF0IjoxNTkzOTg3OTE4LCJpYXQiOjE1OTM5ODczMTh9.iney1QmwDdhN8Eh6GaiZKIj1pZKXTxGp29Ic8f6-Wl0" 
+          required: true
+      responses:
+        200:
+          description: "success"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/products'
+        500:
+          description: "An error occurred, please try again."
+    post:
+      summary: "create a product"
+      parameters:
+        - in: header
+          name: "token"
+          schema:
+            type: string
+            example: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2FnaiIsInVzZXJUeXBlIjoyLCJ1c2VySWQiOjIsImNyZWF0ZWRBdCI6MTU5Mzk4NzMxOCwiZXhwaXJlZEF0IjoxNTkzOTg3OTE4LCJpYXQiOjE1OTM5ODczMTh9.iney1QmwDdhN8Eh6GaiZKIj1pZKXTxGp29Ic8f6-Wl0" 
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/products'
+      responses:
+        201:
+         description: "Created"
+         content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/products'
+        500:
+          description: "An error occurred, please try again."
+  /products/{id}:
+    put:
+      summary: "Update a product"
+      parameters:
+        - in: header
+          name: "token"
+          schema:
+            type: string
+            example: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2FnaiIsInVzZXJUeXBlIjoyLCJ1c2VySWQiOjIsImNyZWF0ZWRBdCI6MTU5Mzk4NzMxOCwiZXhwaXJlZEF0IjoxNTkzOTg3OTE4LCJpYXQiOjE1OTM5ODczMTh9.iney1QmwDdhN8Eh6GaiZKIj1pZKXTxGp29Ic8f6-Wl0" 
+          required: true
+        - in: path
+          name: id   # Note the name is the same as in the path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The product ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/products'
+      responses:
+        204:
+          description: "no content"
+        500:
+          description: "An error occurred, please try again."
+    delete:
+      summary: "Delete a product"
+      parameters:
+        - in: header
+          name: "token"
+          schema:
+            type: string
+            example: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2FnaiIsInVzZXJUeXBlIjoyLCJ1c2VySWQiOjIsImNyZWF0ZWRBdCI6MTU5Mzk4NzMxOCwiZXhwaXJlZEF0IjoxNTkzOTg3OTE4LCJpYXQiOjE1OTM5ODczMTh9.iney1QmwDdhN8Eh6GaiZKIj1pZKXTxGp29Ic8f6-Wl0" 
+          required: true
+        - in: path
+          name: id   # Note the name is the same as in the path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The product ID
+      responses:
+        204:
+          description: "no content"
+        500:
+          description: "An error occurred, please try again."
+  /orders:
+    get:
+      summary: "return all orders"
+      parameters:
+        - in: header
+          name: "token"
+          schema:
+            type: string
+            example: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2FnaiIsInVzZXJUeXBlIjoyLCJ1c2VySWQiOjIsImNyZWF0ZWRBdCI6MTU5Mzk4NzMxOCwiZXhwaXJlZEF0IjoxNTkzOTg3OTE4LCJpYXQiOjE1OTM5ODczMTh9.iney1QmwDdhN8Eh6GaiZKIj1pZKXTxGp29Ic8f6-Wl0" 
+          required: true
+      responses:
+        200:
+          description: "Ok"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/orders'
+    post:
+      summary: "create an order"
+      parameters:
+        - in: header
+          name: "token"
+          schema:
+            type: string
+            example: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2FnaiIsInVzZXJUeXBlIjoyLCJ1c2VySWQiOjIsImNyZWF0ZWRBdCI6MTU5Mzk4NzMxOCwiZXhwaXJlZEF0IjoxNTkzOTg3OTE4LCJpYXQiOjE1OTM5ODczMTh9.iney1QmwDdhN8Eh6GaiZKIj1pZKXTxGp29Ic8f6-Wl0" 
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createOrder'
+      responses:
+        201:
+         description: "Created"
+         content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/createOrderSuccessfull'
+        500:
+          description: "An error occurred, please try again."
+  /orders/{id}:
+    put:
+      summary: "Update an order"
+      parameters:
+        - in: header
+          name: "token"
+          schema:
+            type: string
+            example: "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiY2FnaiIsInVzZXJUeXBlIjoyLCJ1c2VySWQiOjIsImNyZWF0ZWRBdCI6MTU5Mzk4NzMxOCwiZXhwaXJlZEF0IjoxNTkzOTg3OTE4LCJpYXQiOjE1OTM5ODczMTh9.iney1QmwDdhN8Eh6GaiZKIj1pZKXTxGp29Ic8f6-Wl0" 
+          required: true
+        - in: path
+          name: id   # Note the name is the same as in the path
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+          description: The order ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                statusOrderId:         
+                  type: string
+                  description: "Status order"
+                  example: 5
+      responses:
+        204:
+          description: "no content"
+        500:
+          description: "An error occurred, please try again."
+  /login:
+    post:
+      summary: "log in to the application"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/logInBody'
+      responses:
+        200:
+         description: "success"
+         content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/logIn'
+        500:
+          description: "An error occurred, please try again."   
+components:
+  schemas:
+    users:
+      properties:
+        username:
+          type: string
+          description: "username of users"
+          example: "cgm11"
+        fullname:
+          type: string
+          description: "name of users"
+          example: "Carolina García Montoya"
+        email:
+          type: string
+          description: "email of users"
+          example: "caro.garcia0506@gmail"
+        phoneNumber:
+          type: integer
+          description: "number of users"
+          example: 3052645460
+        address:
+          type: string
+          description: "Address of users"
+          example: "Cl 49B #65-71 int 201"
+        password:
+          type: string
+          description: "password of users"
+          example: "C4r0G4rc14"
+          
+    usersUpdate:
+      properties:
+        username:
+          type: string
+          description: "username of users"
+          example: "cgm11"
+        fullname:
+          type: string
+          description: "name of users"
+          example: "Carolina García Montoya"
+        email:
+          type: string
+          description: "email of users"
+          example: "caro.garcia0506@gmail"
+        phoneNumber:
+          type: integer
+          description: "number of users"
+          example: 3052645460
+        address:
+          type: string
+          description: "Address of users"
+          example: "Cl 49B #65-71 int 201"
+        password:
+          type: string
+          description: "password of users"
+          example: "C4r0G4rc14"
+        userTypeId:
+          type: integer
+          description: "user type (admin or user)"
+          example: 2
+          
+    products:
+      properties:
+        name:
+          type: string
+          description: "Name of dishes"
+          example: "HamClass"
+        price:
+          type: integer
+          description: "Price of dish"
+          example: 56
+        image:
+          type: string
+          description: "Image of the dish"
+    orders:
+      properties:
+        id: 
+          type: integer
+          description: "order id"
+          example: 55
+        status:
+          type: string
+          description: "order estatus"
+          example: "new"
+        createdAt:
+          type: string
+          description: "hour of the order"
+          example: "2020-07-05 17:28:23"
+        updatedAt:
+          type: string
+          description: "hour of the order"
+          example: "2020-07-05 17:41:59"
+        paymentMethod:
+          type: string
+          description: "payment method selected"
+          example: "cash"
+        user:
+          type: string
+          description: "user that make the order"
+          example: "cgm11"
+        products: 
+          type: string
+          description: "products order"
+          example: [
+                {
+                    "id": 1,
+                    "name": "pizza",
+                    "price": 15,
+                    "productsOrders": {
+                        "quantity": 2
+                    }
+                }
+            ]  
+    createOrder:
+      properties:
+        paymentMethodId: 
+          type: integer
+          description: "payment Method selected"
+          example: 2
+        products:
+          type: object
+          description: "products for the order"
+          example: [
+                {
+                    "id": 1,
+                    "quantity": 2
+                }
+            ]  
+    createOrderSuccessfull:
+      properties:
+        statusOrderId: 
+          type: integer
+          description: "status id"
+          example: 1
+        id: 
+          type: integer
+          description: "order id"
+          example: 1
+        paymentMethodId: 
+          type: integer
+          description: "paymentMethod id"
+          example: 1
+        userId:
+          type: integer
+          description: "user id"
+          example: 1
+        updatedAt:
+          type: string
+          description: "order time"
+          example: "2020-07-05T23:56:54.489Z"
+        createdAt: 
+          type: string
+          description: "update time order"
+          example: "2020-07-05T23:56:54.489Z"
+    logInBody:
+      properties:
+        user:
+          type: string
+          description: "username or email"
+          example: "cgm11"
+        password:
+          type: string
+          description: "password"
+          example: "C4r0G4rc14"
+    logIn:
+      properties:
+        status: 
+          type: string
+          example: "Success"
+        data:
+          type: object
+          example: {
+            token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJ1c2VyVHlwZSI6MSwidXNlcklkIjoxLCJjcmVhdGVkQXQiOjE1OTM5OTgyMjcsImV4cGlyZWRBdCI6MTU5Mzk5ODgyNywiaWF0IjoxNTkzOTk4MjI3fQ.VAOSOd7LglxQ47VN0Q8Lc8AaWDDOsicb1L1W9ktZgHI"
+          }
+        

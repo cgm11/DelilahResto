@@ -49,8 +49,12 @@ const validateUpdateReq = (req, res, next) => {
             phoneNumber: joi.string().min(3).required(),
             address: joi.string().min(3).required(),
             password: joi.string().min(3).required(),
-            userType: joi.number().required()
+            userTypeId: joi.number().required(),
+            userId: joi.number(),
+            userType: joi.number()
         });
+        console.log(req.body);
+        console.log(schema);
 
         const correctReq = schema.validate(req.body);
 

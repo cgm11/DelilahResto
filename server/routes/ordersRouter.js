@@ -10,6 +10,7 @@ router.use(userMiddlewares.validateToken);
 router.get('/', controller.getOrders);
 router.post('/', orderMiddlewares.validateCreateOrder, controller.setOrder);
 router.put('/:id', userMiddlewares.AdminPermissions, orderMiddlewares.validateUpdateOrder, controller.updateOrder);
+router.delete('/:id', userMiddlewares.AdminPermissions, controller.deleteOrder);
 
 
 module.exports = router;

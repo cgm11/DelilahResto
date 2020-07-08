@@ -1,7 +1,7 @@
 ///////////////// Imports /////////////////
 const express = require('express');
 const productRouter = require('./productsRouter');
-const usersRouter = require('./users');
+const usersRouter = require('./usersRouter');
 const loginRouter = require('./loginRouter');
 const ordersRouter = require('./ordersRouter');
 

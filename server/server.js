@@ -20,7 +20,7 @@ db
     .then(() => {
         console.log("Database is ready.");
         app.listen(config.PORT, () => {
-            console.log('Servidor iniciado');
+            console.log('Server is ready');
         })
     })
     .catch((err) => {

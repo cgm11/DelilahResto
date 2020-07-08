@@ -11,7 +11,7 @@ class OrdersDao {
     static async getOrders() {
         try {
             const allOrders = await orders.findAll({
-                attributes: ['id', 'description', 'createdAt', 'updatedAt'],
+                attributes: ['id', 'createdAt', 'updatedAt'],
                 include: [{
                     model: users,
                     as: 'user',
@@ -51,7 +51,7 @@ class OrdersDao {
     static async getMyOrders(userId) {
         try {
             const allOrders = await orders.findAll({
-                attributes: ['id', 'description', 'createdAt', 'updatedAt'],
+                attributes: ['id', 'createdAt', 'updatedAt'],
                 where: { userId: userId },
                 include: [{
                     model: users,
@@ -102,6 +102,13 @@ class OrdersDao {
         }
         catch (e) { return messages.ERROR }
     }
+
+    static async deleteOrder(id) {
+        try { return await orders.destroy({ 
+            where: { id: id }  });
+         }
+        catch (e) { return messages.ERROR }
+      };
 }
 
 module.exports = OrdersDao;
